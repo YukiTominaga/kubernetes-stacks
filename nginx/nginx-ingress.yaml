@@ -2,7 +2,18 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.global-static-ip-name: "web-static-ip"
 spec:
-  backend:
-    serviceName: nginx-svc
-    servicePort: 80
+  tls:
+  - secretName: webfront-secret
+  rules:
+  - host: iap-gke.demo.cloud-ace.app
+    http:
+      paths:
+        - backend:
+            serviceName: nginx-svc
+            servicePort: 80
+          path: /v1/*
+        

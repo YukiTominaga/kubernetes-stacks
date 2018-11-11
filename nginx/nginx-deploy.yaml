@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -14,19 +14,19 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: gcr.io/PROJECT_NAME/nginx
+        image: nginx:stable-alpine
         ports:
         - containerPort: 80
         readinessProbe:
           httpGet:
             path: /
             port: 80
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 3
-          periodSeconds: 3
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 80
+        #   initialDelaySeconds: 3
+        #   periodSeconds: 3
         resources:
           limits:
             cpu: 200m
