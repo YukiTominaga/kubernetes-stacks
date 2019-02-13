@@ -26,8 +26,8 @@ spec:
             cpu: 200m
             memory: 100Mi
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: nginx-svc
 spec:
@@ -42,17 +42,14 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: nginx-ingress
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: "web-static-ip"
 spec:
   tls:
   - secretName: cert
   rules:
-  - host: iap.demo.cloud-ace.app
-    http:
+  - http:
       paths:
         - backend:
             serviceName: nginx-svc
             servicePort: 80
-          path: /v1/*
+          path: /*
         
