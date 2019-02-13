@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -21,7 +21,10 @@ spec:
           httpGet:
             path: /
             port: 80
-        resources:
-          limits:
-            cpu: 200m
-            memory: 100Mi
+        # resources:
+        #   requests:
+        #     cpu: 200m
+        #     memory: 100Mi
+        #   limits:
+        #     cpu: 200m
+        #     memory: 100Mi
