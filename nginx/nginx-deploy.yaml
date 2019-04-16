@@ -18,13 +18,19 @@ spec:
         ports:
         - containerPort: 80
         readinessProbe:
+          initialDelaySeconds: 30
           httpGet:
             path: /
             port: 80
-        # resources:
-        #   requests:
-        #     cpu: 200m
-        #     memory: 100Mi
-        #   limits:
-        #     cpu: 200m
-        #     memory: 100Mi
+        livenessProbe:
+          periodSeconds: 60
+          httpGet:
+            path: /
+            port: 80
+        resources:
+          requests:
+            cpu: 200m
+            memory: 100Mi
+          limits:
+            cpu: 200m
+            memory: 100Mi

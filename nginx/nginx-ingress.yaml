@@ -6,7 +6,6 @@ spec:
   rules:
     - http:
         paths:
-        - path: /*
-          backend:
+        - backend:
             serviceName: nginx-svc
             servicePort: 80
