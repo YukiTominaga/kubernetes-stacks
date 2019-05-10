@@ -1,0 +1,7 @@
+steps:
+- id: 'Deploy to Kubernetes'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'nginx.yaml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-northeast1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gcpug-joshi'
