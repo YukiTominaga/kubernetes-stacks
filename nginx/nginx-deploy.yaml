@@ -17,20 +17,20 @@ spec:
         image: nginx:stable-alpine
         ports:
         - containerPort: 80
-        readinessProbe:
-          initialDelaySeconds: 30
+        readinessProbe: # Podの再起動をする
+          periodSeconds: 60
           httpGet:
             path: /
             port: 80
-        livenessProbe:
+        livenessProbe: # Podの再起動をする
           periodSeconds: 60
           httpGet:
             path: /
             port: 80
         resources:
-          requests:
+          requests: # 特定のNodeにPodが配置されすぎることを防ぐ
             cpu: 200m
             memory: 100Mi
-          limits:
+          limits: # PodがNodeのリソースを使いすぎることを防ぐ(memoryのみ)
             cpu: 200m
             memory: 100Mi
